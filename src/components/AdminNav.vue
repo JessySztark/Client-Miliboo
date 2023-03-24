@@ -1,0 +1,27 @@
+<script>
+export default {};
+</script>
+
+<template>
+  <div>
+    <ul>
+      <li><router-link to="/">Accueil</router-link></li>
+      <li>&nbsp;</li>
+      <li><router-link to="/admin/dashboard">Dashboard</router-link></li>
+      <li>&nbsp;</li>
+      <li><router-link to="/admin/users/index">User list</router-link></li>
+      <li><router-link to="/admin/users/add">User add</router-link></li>
+    </ul>
+  </div>
+</template>
+
+<style>
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin-right: 10px;
+}
+ul li {
+  text-align: left;
+}
+</style>
