@@ -7,9 +7,18 @@ const product = productStore();
 
 <template>
   <h1>Our products</h1>
-  <section>
+  <section class="grid">
     <Product v-for="prod in product.products" :product="prod"></Product>
   </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* Styles pour la grille de produits */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+</style>

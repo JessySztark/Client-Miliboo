@@ -7,7 +7,7 @@ export const productStore = defineStore("product", () => {
 
   // Chargement initial
   axios
-    .get("http://51.83.36.122:81/read") //A modifier quand API ~OK~
+    .get("https://api-miliboo.azurewebsites.net/api/Products/GetProducts") //A modifier quand API ~OK~
     .then((response) => {
       response.data.forEach((product) => products.push(product));
     });
