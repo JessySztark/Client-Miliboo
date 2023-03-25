@@ -1,7 +1,16 @@
-<script setup></script>
+<script setup>
+import { productStore } from "@/stores/product.js";
+import Promotions from "@/components/Promotion.vue";
+
+const product = productStore();
+</script>
 
 <template>
   <h1>Home</h1>
+
+  <!-- <div v-for="prod in product.products" :product="prod">
+    {{ prod }} <br /><br />
+  </div> -->
 
   <div class="banner">
     <div class="banner-title">
