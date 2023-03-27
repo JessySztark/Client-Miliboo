@@ -2,15 +2,8 @@
 
 import Axios from "./caller.service";
 
-export const accountService = {
-  login,
-  logout,
-  saveToken,
-  isLogged,
-};
-
 let login = (credentials) => {
-  return Axios.post("/", credentials); //ajouter chemin connexion (ex: /auth/login)
+  return Axios.post("/login", credentials);
 };
 
 let logout = () => {
@@ -24,4 +17,11 @@ let saveToken = (token) => {
 let isLogged = () => {
   let token = localStorage.getItem("token");
   return !!token; // '!!' transforme une chaine en booléen => s'il n'y a pas de token alors variable token vide donc !! token == false
+};
+
+export const accountService = {
+  login,
+  logout,
+  saveToken,
+  isLogged,
 };

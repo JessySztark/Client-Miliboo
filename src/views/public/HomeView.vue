@@ -8,9 +8,9 @@ const product = productStore();
 <template>
   <h1>Home</h1>
 
-  <!-- <div v-for="prod in product.products" :product="prod">
+  <div v-for="prod in product.products" :product="prod">
     {{ prod }} <br /><br />
-  </div> -->
+  </div>
 
   <div class="banner">
     <div class="banner-title">
