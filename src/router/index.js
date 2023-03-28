@@ -17,6 +17,7 @@ import NewProducts from "@/views/public/products/groupings/NewProductsView.vue";
 import Promotions from "@/views/public/products/groupings/PromotionsView.vue";
 import MadeInFrance from "@/views/public/products/groupings/MadeInFranceView.vue";
 import OneProduct from "@/views/public/products/groupings/OneProduct.vue";
+import SearchProduct from "@/views/public/products/groupings/SearchProduct.vue";
 
 
 // ---------------[RGPD]--------------- //
@@ -98,6 +99,12 @@ const router = createRouter({
           path: "/produits/:id",
           name: "one-product",
           component:OneProduct ,
+          props: true
+        },
+        {
+          path: "/recherche/:name",
+          name: "search-product",
+          component:SearchProduct ,
           props: true
         },
         // ---------------[RGPD]--------------- //

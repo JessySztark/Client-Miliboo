@@ -4,7 +4,9 @@ import axios from "axios";
 
 export const productStore = defineStore("product", () => {
   const products = reactive([]);
+  const productsBySearch = reactive([]);
   const myProduct = reactive({});
+  const search = ref("");
 
   // Chargement initial
   axios
@@ -24,6 +26,13 @@ export const productStore = defineStore("product", () => {
       });
     }
 
+    function GetProductsBySearch(mySearch){
+      axios.get("https://api-miliboo.azurewebsites.net/api/Products/GetProductByName/" + mySearch)
+      .then((response) => {
+        response.data.forEach((product) => productsBySearch.push(product));
+      });
+    }
 
-  return { products,myProduct,GetProduct};
+
+  return {products,productsBySearch,myProduct,GetProduct,GetProductsBySearch};
 });

@@ -1,3 +1,20 @@
+<script>
+export default {
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
+  methods: {
+    search() {
+      window.location.href =
+        "http://localhost:5173/recherche/" +
+        encodeURIComponent(this.searchQuery);
+    },
+  },
+};
+</script>
+
 <template>
   <div>
     <div class="container">
@@ -9,14 +26,13 @@
                 <ul>
                   <li><RouterLink to="/" id="logo">miliboo</RouterLink></li>
                   <li>
-                    <form role="search" action="/search" method="GET">
-                      <input
-                        type="search"
-                        name="research"
-                        placeholder="Je recherche..."
-                        title="Faire une recherche"
-                      />
-                    </form>
+                    <input
+                      type="search"
+                      placeholder="Je recherche..."
+                      title="Faire une recherche"
+                      v-model="searchQuery"
+                      @keydown.enter="search"
+                    />
                   </li>
                 </ul>
               </div>
