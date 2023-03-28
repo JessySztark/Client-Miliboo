@@ -4,6 +4,11 @@ import { accountService } from "@/_services";
 
 <template>
   <div>
+    <div class="banner">
+      <div class="banner-title">
+        <h3>Livraison gratuite & expédition en 24h<sup>(1)</sup></h3>
+      </div>
+    </div>
     <div class="container">
       <header>
         <div>
@@ -101,6 +106,21 @@ import { accountService } from "@/_services";
 </template>
 
 <style scoped>
+/*-----------------[Banière]-----------------*/
+
+.banner {
+  background-color: rgb(183, 185, 166);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1vh;
+}
+
+.banner-title {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
 /*-----------------[Header]-----------------*/
 .iconsLink {
   width: 5%;
