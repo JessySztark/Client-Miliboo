@@ -1,7 +1,3 @@
-<script>
-import { accountService } from "@/_services";
-</script>
-
 <template>
   <div>
     <div class="container">
@@ -35,16 +31,15 @@ import { accountService } from "@/_services";
                         alt="Aide"
                     /></RouterLink>
                   </li>
-
                   <li>
                     <RouterLink
                       class="iconsLink"
-                      to="/login"
-                      aria-label="Connexion"
+                      to="dashBoard"
+                      aria-label="Menu"
                       ><img
                         class="icons"
                         src="/picture/icons/icon-user.png"
-                        alt="Connexion"
+                        alt="Menu"
                     /></RouterLink>
                   </li>
                   <li>
@@ -54,7 +49,7 @@ import { accountService } from "@/_services";
                         src="/picture/icons/icon-cart.png"
                         alt="Panier"
                     /></RouterLink>
-                    <!-- <RouterLink to="admin/dashboard"> Admin</RouterLink> -->
+                    <RouterLink to="admin/dashboard"> Admin</RouterLink>
                   </li>
                 </ul>
               </div>
