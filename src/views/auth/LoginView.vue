@@ -18,11 +18,10 @@ export default {
         .then((res) => {
           accountService.saveToken("token", res.data.access_token);
           this.$router.push("/admin/dashboard");
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((err) => console.log(err));
-
-      console.log(this.user);
+      // console.log(accountService.isLogged());
     },
   },
 };
