@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { cart } from "@/stores/cart.js";
+</script>
 
 <template>
   <div id="panier">
@@ -17,29 +19,26 @@
             Les articles de mon panier :
           </th>
           <th></th>
-          <th class="colmun-table-panier">QUANTITE</th>
+          <th class="colmun-table-panier">QUANTITÉ</th>
           <th>SUPPRIMER</th>
           <th>TOTAL</th>
         </tr>
       </thead>
-
-      <!-- Faire les modifs pour que ça fonctionne -->
-
-      <!-- <tbody>
-        @if(session('panier') != null) @foreach(session('panier') as $unProduit)
+      <tbody>
+        @if($cart != null) @foreach($cart as $unProduit)
         <tr>
           <th id="imgPanier">
-            <a href="/nos-produits/{{$unProduit['produit']->numproduit}}">
+            <a href="/nos-produits/{{unProduit.value.productid}}"></a></th></tr></tbody><!--
               <img
                 class="imgPanier"
-                src="{{$unProduit['produit']->photos[0]->lienphoto}}"
+                src="{{unProduit['produit']->photos[0]->lienphoto}}"
               />
             </a>
           </th>
           <td>
-            <p>{{$unProduit['produit']->libelleproduit}}</p>
+            <p>{{(unProduit['libelleproduit'])}}</p>
             <b>
-              {{ round($unProduit['produit']->prixproduit * (1- $unProduit['produit']->pourcentagesoldeproduit), 2)}}
+              {{ round(unProduit['prixproduit'] * (1- unProduit['pourcentagesoldeproduit']), 2)}}
               €</b
             >
           </td>
@@ -47,18 +46,18 @@
             <form method="POST" action="/updatePanier">
               @csrf
               <select name="nbProduits">
-                @for ($i = 1; $i < $unProduit['produit']->nbenstock +1; $i++)
-                @if($i == $unProduit['quantite'])
+                @foreach($cart as $produit)
+                @if($i == $produit['quantite'])
                 <option value="{{ $i }}" selected="selected">{{ $i }}</option>
                 @else
                 <option value="{{ $i }}">{{ $i }}</option>
-                @endif @endfor
+                @endif @endforeach
               </select>
               <button
                 class="button"
                 type="submit"
                 name="product"
-                value="{{$unProduit['produit']->numproduit}}"
+                value="{{unProduit['numproduit']}}"
               >
                 Modifier la quantite
               </button>
@@ -66,12 +65,11 @@
           </td>
           <td>
             <form method="POST" action="/deletePanier">
-              @csrf
               <button
                 class="button deleteButton"
                 type="submit"
                 name="product"
-                value="{{$unProduit['produit']->numproduit}}"
+                value="{{$unProduit['numproduit']}}"
               >
                 Supprimer
               </button>
@@ -79,12 +77,12 @@
           </td>
           <td>
             <p>
-              {{round($unProduit['produit']->prixproduit * (1- $unProduit['produit']->pourcentagesoldeproduit) * $unProduit['quantite'], 2)}}
+              {{round(unProduit['prixproduit'] * (1- unProduit['pourcentagesoldeproduit']) * unProduit['quantite'], 2)}}
             </p>
           </td>
         </tr>
         @endforeach
-      </tbody> -->
+      </tbody>-->
     </table>
     <!-- <img
       id="sign-button"

@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div v-if="isLoading">Chargement en cours...</div>
   <div v-else>
-    <h1>{{ product.myProduct.product.productName }}</h1>
+    <h1>{{ product.productName }}</h1>
     <div id="descriptionProduit">
       <section>
         <h3>Description</h3>
@@ -40,7 +40,7 @@ onMounted(async () => {
         <h3>Entretien</h3>
         <!-- <p>{{$leProduit->typeProduit->commentaireentretientypeproduit}}</p> -->
       </section>
-      <p>{{ product.myProduct.join.colorName }}</p>
+      <!--<p>{{ product.myProduct.join.colorName }}</p>-->
     </div>
   </div>
 
@@ -52,7 +52,7 @@ onMounted(async () => {
   <p>Colori(s) disponible(s) :</p>
 
   <!-- <p>{{product.myProduct.join.colorName}}</p> -->
-  <button @click="cart" class="btn_cart">Passer commande</button>
+  <RouterLink :to="/cart/"><button @click="addToCart(product.MyProduct.product.productid)" class="btn_cart">Passer commande</button></RouterLink>
 </template>
 
 <style scoped></style>
