@@ -1,9 +1,9 @@
 <script>
-import PublicNav from "@/components/PublicNav.vue";
+import ClientNav from "@/components/ClientNav.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   components: {
-    PublicNav,
+    ClientNav,
     Footer,
   },
 };
@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div class="public">
-    <PublicNav />
+    <ClientNav />
     <router-view />
     <Footer />
   </div>

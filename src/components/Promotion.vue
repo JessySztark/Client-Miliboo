@@ -10,7 +10,10 @@ const props = defineProps({
 
 <template>
   <div class="product" v-if="product.productDiscount != 0">
-    <img src="picture\products\canape.jpg" :alt="product.productName" />
+    <img
+      :src="'picture\\products\\' + product.productId + '.jpg'"
+      :alt="product.productName"
+    />
     <h3>{{ product.productName }}</h3>
     <div>
       <div class="discount">- {{ product.productDiscount * 100 }}%</div>

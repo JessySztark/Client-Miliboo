@@ -37,6 +37,11 @@ import UserAdd from "@/views/admin/users/UserAddView.vue";
 import UserEdit from "@/views/admin/users/UserEditView.vue";
 import UserIndex from "@/views/admin/users/UserIndexView.vue";
 
+// ---------------------[Client]--------------------- //
+import ClientLayout from "@/views/client/LayoutView.vue";
+
+import ClientDashBoard from "@/views/client/DashBoardView.vue";
+
 // ---------------------[Auth]--------------------- //
 import Login from "@/views/auth/LoginView.vue";
 import { authGuard } from "@/_helpers/auth-guard";
@@ -151,6 +156,20 @@ const router = createRouter({
           path: "users/index",
           name: "userIndex",
           component: UserIndex,
+        },
+      ],
+    },
+
+    // ---------------[Client]--------------- //
+    {
+      path: "/client",
+      name: "client",
+      component: ClientLayout,
+      children: [
+        {
+          path: "dashBoard",
+          name: "dashBoard",
+          component: ClientDashBoard,
         },
       ],
     },
