@@ -10,7 +10,6 @@ const props = defineProps({
 });
 
 const product = productStore();
-product.GetProduct(props.id);
 const isLoading = ref(true);
 
 onMounted(async () => {
