@@ -16,6 +16,9 @@ import OurProducts from "@/views/public/products/groupings/OurProductsView.vue";
 import NewProducts from "@/views/public/products/groupings/NewProductsView.vue";
 import Promotions from "@/views/public/products/groupings/PromotionsView.vue";
 import MadeInFrance from "@/views/public/products/groupings/MadeInFranceView.vue";
+import OneProduct from "@/views/public/products/groupings/OneProduct.vue";
+import SearchProduct from "@/views/public/products/groupings/SearchProduct.vue";
+
 
 // ---------------[RGPD]--------------- //
 import DataProtection from "@/views/public/rgpd/DataProtectionView.vue";
@@ -96,6 +99,18 @@ const router = createRouter({
           path: "/made-in-france",
           name: "made-in-france",
           component: MadeInFrance,
+        },
+        {
+          path: "/produits/:id",
+          name: "one-product",
+          component:OneProduct ,
+          props: true
+        },
+        {
+          path: "/recherche/:name",
+          name: "search-product",
+          component:SearchProduct ,
+          props: true
         },
         // ---------------[RGPD]--------------- //
         {

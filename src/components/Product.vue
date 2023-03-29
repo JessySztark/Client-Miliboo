@@ -18,21 +18,24 @@ const props = defineProps({
     <div v-if="product.productDiscount == 0">
       <div class="price">{{ product.productPrice }}€</div>
     </div>
-    <div v-if="product.productDiscount != 0">
-      <div class="discount">- {{ product.productDiscount * 100 }}%</div>
+    <div v-if="product.p.productDiscount != 0">
+      <div class="discount">- {{ product.p.productDiscount * 100 }}%</div>
       <div class="price">
         <div>
           {{
-            (product.productPrice * (1 - product.productDiscount)).toPrecision(
-              5
-            )
+            (
+              product.p.productPrice *
+              (1 - product.p.productDiscount)
+            ).toPrecision(5)
           }}€
         </div>
-        <div class="strikethrough">{{ product.productPrice }}€</div>
+        <div class="strikethrough">{{ product.p.productPrice }}€</div>
       </div>
     </div>
-    <router-link to=""></router-link>
+    <!-- <a :href="'/produits/' ">Voir</a> -->
+    <router-link :to="'/produits/' + this.product.p.productId"></router-link>
   </div>
+  <!-- </a> -->
 </template>
 
 <style scoped>
