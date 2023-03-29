@@ -1,7 +1,9 @@
 <script setup>
 import { productStore } from "@/stores/product.js";
-import { onMounted, ref } from "vue";
 import { cart } from "@/stores/cart.js";
+import { onMounted, onUpdated, ref, reactive } from "vue";
+import axios from "axios";
+import Comment from "@/components/Comment.vue";
 
 const props = defineProps({
   id: {
@@ -10,49 +12,59 @@ const props = defineProps({
 });
 
 const product = productStore();
-product.GetProduct(props.id);
 const isLoading = ref(true);
+const theProduct = reactive({ value: null });
+const comments = reactive({ value: null });
 
 onMounted(async () => {
-  await product.GetProduct(props.id);
-  isLoading.value = false;
-  console.log(product.myProduct);
+  await axios
+    .get(
+      "https://api-miliboo.azurewebsites.net/api/Products/GetProductPhotoColorById/" +
+        props.id
+    )
+    .then((response) => {
+      theProduct.value = response.data;
+    });
+
+  await axios
+    .get(
+      "https://api-miliboo.azurewebsites.net/api/Comments/GetCommentByForeignKey/" +
+        theProduct.value.join.productTypeId
+    )
+    .then((response) => {
+      comments.value = response.data;
+    });
+
+  console.log(comments.value);
 });
 </script>
 
 <template>
-  <div v-if="isLoading">Chargement en cours...</div>
-  <div v-else>
-    <h1>{{ product.productName }}</h1>
-    <div id="descriptionProduit">
-      <section>
-        <h3>Description</h3>
-        <!-- <p>{{product.myProduct.product.productDescription}}</p> -->
-      </section>
-      <section id="aspectTechniqueProduit"></section>
+  <div v-if="theProduct.value != null">
+    <h1>{{ theProduct.value.product.productName }}</h1>
+    <br />
+    <section>
+      <h3>Description</h3>
+      <br />
+      <p>{{ theProduct.value.product.productDescription }}</p>
+    </section>
+    <br />
+    <h3>Colori(s) disponible(s) :</h3>
+    <p>{{ theProduct.value.join.colorName }}</p>
+  </div>
+  
+  <RouterLink :to="/cart/"><button @click="addToCart(product.MyProduct.product.productid)" class="btn_cart">Passer commande</button></RouterLink>
 
-      <p>
-        Ce produit peut être, au choix, réemployé ou recyclé.<br />Si vous
-        souhaitez recycler votre produit, vous pouvez vous rendre dans l'un des
-        points de collecte dont la liste est disponible sur Maison du tri.
-      </p>
-      <section>
-        <h3>Entretien</h3>
-        <!-- <p>{{$leProduit->typeProduit->commentaireentretientypeproduit}}</p> -->
-      </section>
-      <!--<p>{{ product.myProduct.join.colorName }}</p>-->
+  <div v-if="comments.value != null">
+    <h1>Commentaire(s)</h1>
+    <div v-for="comment in comments.value" :key="comment.commentId">
+      <h3>{{ comment.title }}</h3>
+      <p>{{ comment.description }}</p>
+      <p>Note : {{ comment.mark }}/5</p>
+      <p>Publié le : {{ comment.date }}</p>
+      <br />
     </div>
   </div>
-
-  <!-- <div id="infosProduit">
-        {{$leProduit->libelleproduit}}
-        <a id="lienDescription" href="#descriptionProduit"><u>Description détaillée</u></a>
-        <a href="#avisClients"><u>{{count($leProduit->typeProduit->avis)}}(avis)</u></a><br> -->
-
-  <p>Colori(s) disponible(s) :</p>
-
-  <!-- <p>{{product.myProduct.join.colorName}}</p> -->
-  <RouterLink :to="/cart/"><button @click="addToCart(product.MyProduct.product.productid)" class="btn_cart">Passer commande</button></RouterLink>
 </template>
 
 <style scoped></style>

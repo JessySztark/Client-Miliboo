@@ -1,10 +1,10 @@
 <script>
 import PublicNav from "@/components/PublicNav.vue";
-import PublicFooter from "@/components/PublicFooter.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   components: {
     PublicNav,
-    PublicFooter,
+    Footer,
   },
 };
 </script>
@@ -13,7 +13,7 @@ export default {
   <div class="public">
     <PublicNav />
     <router-view />
-    <PublicFooter />
+    <Footer />
   </div>
 </template>
 

@@ -4,7 +4,8 @@ import axios from "axios";
 
 export const productStore = defineStore("product", () => {
   const products = reactive([]);
-  const myProduct = reactive({});
+  const productsBySearch = reactive([]);
+  const search = ref("");
 
   // Chargement initial
   axios
@@ -17,13 +18,15 @@ export const productStore = defineStore("product", () => {
     //   return products.find((product) => product.id === id);
     // }
 
-    function GetProduct(id){
-      axios.get("https://api-miliboo.azurewebsites.net/api/Products/GetProductPhotoColorById/" + id)
+    function GetProductsBySearch(mySearch){
+      axios.get("https://api-miliboo.azurewebsites.net/api/Products/GetProductByName/" + mySearch)
       .then((response) => {
-        this.myProduct = response.data
+        response.data.forEach((product) => productsBySearch.push(product));
       });
     }
+  return {products,productsBySearch,GetProductsBySearch};
+}
 
 
-  return { products,myProduct,GetProduct};
-});
+
+);

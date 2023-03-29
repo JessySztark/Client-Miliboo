@@ -6,10 +6,22 @@ const product = productStore();
 </script>
 
 <template>
-  <h1>Promotions</h1>
-  <section class="grid">
-    <Promotions v-for="prod in product.products" :product="prod"></Promotions>
-  </section>
+  <div class="container">
+    <div>
+      <h1>Les promotions</h1>
+      <p>
+        Envie de vous faire plaisir à prix réduit, les promotions sur les
+        meubles design se déroulent chez miliboo tout au long de l'année.
+      </p>
+      <p>
+        Venez profiter des promotions sur les meubles design et autres éléments
+        déco pour agencer votre intérieur avec style.
+      </p>
+    </div>
+    <section class="grid">
+      <Promotions v-for="prod in product.products" :product="prod"></Promotions>
+    </section>
+  </div>
 </template>
 
 <style scoped>

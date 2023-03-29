@@ -17,6 +17,7 @@ import NewProducts from "@/views/public/products/groupings/NewProductsView.vue";
 import Promotions from "@/views/public/products/groupings/PromotionsView.vue";
 import MadeInFrance from "@/views/public/products/groupings/MadeInFranceView.vue";
 import OneProduct from "@/views/public/products/groupings/OneProduct.vue";
+import SearchProduct from "@/views/public/products/groupings/SearchProduct.vue";
 
 
 // ---------------[RGPD]--------------- //
@@ -35,6 +36,11 @@ import DashBoard from "@/views/admin/DashBoardView.vue";
 import UserAdd from "@/views/admin/users/UserAddView.vue";
 import UserEdit from "@/views/admin/users/UserEditView.vue";
 import UserIndex from "@/views/admin/users/UserIndexView.vue";
+
+// ---------------------[Client]--------------------- //
+import ClientLayout from "@/views/client/LayoutView.vue";
+
+import ClientDashBoard from "@/views/client/DashBoardView.vue";
 
 // ---------------------[Auth]--------------------- //
 import Login from "@/views/auth/LoginView.vue";
@@ -100,6 +106,12 @@ const router = createRouter({
           component:OneProduct ,
           props: true
         },
+        {
+          path: "/recherche/:name",
+          name: "search-product",
+          component:SearchProduct ,
+          props: true
+        },
         // ---------------[RGPD]--------------- //
         {
           path: "/data-protection",
@@ -144,6 +156,20 @@ const router = createRouter({
           path: "users/index",
           name: "userIndex",
           component: UserIndex,
+        },
+      ],
+    },
+
+    // ---------------[Client]--------------- //
+    {
+      path: "/client",
+      name: "client",
+      component: ClientLayout,
+      children: [
+        {
+          path: "dashBoard",
+          name: "dashBoard",
+          component: ClientDashBoard,
         },
       ],
     },
