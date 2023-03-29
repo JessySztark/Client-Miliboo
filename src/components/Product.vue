@@ -20,19 +20,19 @@ const props = defineProps({
       <div class="price">
         <div>
           {{
-            (product.p.productPrice * (1 - product.p.productDiscount)).toPrecision(
-              5
-            )
+            (
+              product.p.productPrice *
+              (1 - product.p.productDiscount)
+            ).toPrecision(5)
           }}€
         </div>
         <div class="strikethrough">{{ product.p.productPrice }}€</div>
       </div>
     </div>
     <!-- <a :href="'/produits/' ">Voir</a> -->
-    <router-link :to="'/produits/'+ this.product.p.productId " ></router-link>
+    <router-link :to="'/produits/' + this.product.p.productId"></router-link>
   </div>
-<!-- </a> -->
-
+  <!-- </a> -->
 </template>
 
 <style scoped>
