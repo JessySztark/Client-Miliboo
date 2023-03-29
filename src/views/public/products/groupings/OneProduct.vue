@@ -1,6 +1,7 @@
 <script setup>
 import { productStore } from "@/stores/product.js";
 import { onMounted, ref } from "vue";
+import { cart } from "@/stores/cart.js";
 
 const props = defineProps({
   id: {
@@ -51,6 +52,7 @@ onMounted(async () => {
   <p>Colori(s) disponible(s) :</p>
 
   <!-- <p>{{product.myProduct.join.colorName}}</p> -->
+  <button @click="cart" class="btn_cart">Passer commande</button>
 </template>
 
 <style scoped></style>
