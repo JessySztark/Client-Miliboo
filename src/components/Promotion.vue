@@ -14,7 +14,7 @@ const props = defineProps({
       :src="'picture\\products\\' + product.p.productId + '.jpg'"
       :alt="product.p.productName"
     />
-    <h3>{{ product.productName }}</h3>
+    <h3>{{ product.p.productName }}</h3>
     <div>
       <div class="discount">- {{ product.p.productDiscount * 100 }}%</div>
       <div class="price">
