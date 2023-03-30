@@ -29,7 +29,7 @@ const props = defineProps({
         <div class="strikethrough">{{ product.p.productPrice }}€</div>
       </div>
     </div>
-    <router-link to=""></router-link>
+    <router-link :to="'/produits/' + this.product.p.productId"></router-link>
   </div>
 </template>
 

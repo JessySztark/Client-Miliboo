@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <h1>Our stores</h1>
+  <h1>Nos magasins</h1>
   <div class="grid">
     <div class="store">
       <img

@@ -52,6 +52,9 @@ onMounted(async () => {
     <div class="product-details">
       <h1 class="product-name">{{ theProduct.value.product.productName }}</h1>
       <p class="product-price">{{ theProduct.value.product.productPrice }}€</p>
+      <p class="product-price">
+        Article(s) en stock(s) : {{ theProduct.value.product.nbStockProduct }}
+      </p>
       <p class="product-description">
         {{ theProduct.value.product.productDescription }}
       </p>

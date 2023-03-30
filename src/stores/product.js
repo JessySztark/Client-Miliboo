@@ -24,6 +24,10 @@ export const productStore = defineStore("product", () => {
         response.data.forEach((product) => productsBySearch.push(product));
       });
     }
+
+   
+
+
   return {products,productsBySearch,GetProductsBySearch};
 }
 
