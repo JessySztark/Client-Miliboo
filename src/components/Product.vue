@@ -11,12 +11,12 @@ const props = defineProps({
 <template>
   <div class="product">
     <img
-      :src="'picture\\products\\' + product.productId + '.jpg'"
-      :alt="product.productName"
+      :src="'picture\\products\\' + product.p.productId + '.jpg'"
+      :alt="product.p.productName"
     />
-    <h3>{{ product.productName }}</h3>
-    <div v-if="product.productDiscount == 0">
-      <div class="price">{{ product.productPrice }}€</div>
+    <h3>{{ product.p.productName }}</h3>
+    <div v-if="product.p.productDiscount == 0">
+      <div class="price">{{ product.p.productPrice }}€</div>
     </div>
     <div v-if="product.p.productDiscount != 0">
       <div class="discount">- {{ product.p.productDiscount * 100 }}%</div>
