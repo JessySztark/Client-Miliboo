@@ -7,15 +7,15 @@ let login = (credentials) => {
 };
 
 let logout = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem('token');
 };
 
 let saveToken = (token) => {
-  localStorage.setItem("token", token);
+  localStorage.setItem('token', token);
 };
 
 let isLogged = () => {
-  let token = localStorage.getItem("token");
+  let token = localStorage.getItem('token');
   return !!token; // '!!' transforme une chaine en booléen => s'il n'y a pas de token alors variable token vide donc !! token == false
 };
 

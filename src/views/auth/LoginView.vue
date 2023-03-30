@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       user: {
-        UserName: "",
+        Mail: "",
         Password: "",
       },
     };
@@ -18,12 +18,10 @@ export default {
       accountService
         .login(this.user)
         .then((res) => {
-          accountService.saveToken("token", res.data.access_token);
-          this.$router.push("/client/dashboard");
-          console.log(res.data);
+          accountService.saveToken(res.data.token);
+          this.$router.push("/client/clientArea");
         })
         .catch((err) => console.log(err));
-      console.log(accountService.isLogged());
     },
   },
   components: {
@@ -45,13 +43,13 @@ export default {
       <p>Remplissez vos informations de connexion ci-dessous</p>
 
       <div class="form- group">
-        <!-- <label for="user_UserName">UserName</label> -->
+        <!-- <label for="user_Mail">Mail</label> -->
         <input
           class="form-text full"
           type="text"
-          id="user_UserName"
+          id="user_Mail"
           placeholder="E-mail"
-          v-model="user.UserName"
+          v-model="user.Mail"
           required
         />
         <!-- ajouter =>  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" -->

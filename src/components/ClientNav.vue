@@ -1,5 +1,30 @@
+<script>
+
+import { accountService } from "@/_services";
+
+export default {
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
+  methods: {
+    search() {
+      window.location.href =
+        "http://localhost:5173/recherche/" +
+        encodeURIComponent(this.searchQuery);
+    },
+  },
+};
+</script>
+
 <template>
   <div>
+    <div class="banner">
+      <div class="banner-title">
+        <h3>Livraison gratuite & expédition en 24h<sup>(1)</sup></h3>
+      </div>
+    </div>
     <div class="container">
       <header>
         <div>
@@ -9,14 +34,13 @@
                 <ul>
                   <li><RouterLink to="/" id="logo">miliboo</RouterLink></li>
                   <li>
-                    <form role="search" action="/search" method="GET">
-                      <input
-                        type="search"
-                        name="research"
-                        placeholder="Je recherche..."
-                        title="Faire une recherche"
-                      />
-                    </form>
+                    <input
+                      type="search"
+                      placeholder="Je recherche..."
+                      title="Faire une recherche"
+                      v-model="searchQuery"
+                      @keydown.enter="search"
+                    />
                   </li>
                 </ul>
               </div>
@@ -31,15 +55,17 @@
                         alt="Aide"
                     /></RouterLink>
                   </li>
+
+
                   <li>
                     <RouterLink
                       class="iconsLink"
-                      to="dashBoard"
-                      aria-label="Menu"
+                      to="clientArea"
+                      aria-label="Espace client"
                       ><img
                         class="icons"
                         src="/picture/icons/icon-user.png"
-                        alt="Menu"
+                        alt="Espace-client"
                     /></RouterLink>
                   </li>
                   <li>
@@ -49,7 +75,7 @@
                         src="/picture/icons/icon-cart.png"
                         alt="Panier"
                     /></RouterLink>
-                    <RouterLink to="admin/dashboard"> Admin</RouterLink>
+                    <!-- <RouterLink to="admin/dashboard"> Admin</RouterLink> -->
                   </li>
                 </ul>
               </div>
@@ -96,6 +122,21 @@
 </template>
 
 <style scoped>
+/*-----------------[Banière]-----------------*/
+
+.banner {
+  background-color: rgb(183, 185, 166);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1vh;
+}
+
+.banner-title {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
 /*-----------------[Header]-----------------*/
 .iconsLink {
   width: 5%;

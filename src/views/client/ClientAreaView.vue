@@ -3,7 +3,7 @@
 <template>
   <div class="form-container">
     <h1>
-      Bienvenue sur votre espace personnel
+      Bienvenue sur votre espace client
       <!--{{ session('login')->emailcompte }}-->
     </h1>
     <a href=""
