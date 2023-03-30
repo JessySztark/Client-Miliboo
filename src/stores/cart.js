@@ -8,8 +8,7 @@ export const cart = defineStore("productid", () => {
     function addToCart(){
         axios.get("https://api-miliboo.azurewebsites.net/api/Products/GetProductById/"+productid)
         .then((response) => {
-        product = response;
-        myCart.push(product);
+        response.data.forEach((product) => myCart.push(product));
         });
     }
 
