@@ -144,7 +144,7 @@ export default {
 }
 
 .icons {
-  width: 5vw;
+  width: 3vw;
 }
 
 #logo {

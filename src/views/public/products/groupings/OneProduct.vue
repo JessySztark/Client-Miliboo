@@ -1,7 +1,7 @@
 <script setup>
 import { productStore } from "@/stores/product.js";
-import { cart } from "@/stores/cart.js";
 import { onMounted, onUpdated, ref, reactive } from "vue";
+import { myCartStore } from "@/stores/cart.js";
 import axios from "axios";
 import Comment from "@/components/Comment.vue";
 
@@ -11,6 +11,7 @@ const props = defineProps({
   },
 });
 
+const cart = myCartStore();
 const product = productStore();
 const isLoading = ref(true);
 const theProduct = reactive({ value: null });
@@ -53,7 +54,7 @@ onMounted(async () => {
     <p>{{ theProduct.value.join.colorName }}</p>
   </div>
   
-  <RouterLink :to="/cart/"><button @click="addToCart(product.MyProduct.product.productid)" class="btn_cart">Passer commande</button></RouterLink>
+  <RouterLink :to="`/cart/`"><button @click="cart(theProduct.value.product.productId)" class="btn_cart">Passer commande</button></RouterLink>
 
   <div v-if="comments.value != null">
     <h1>Commentaire(s)</h1>
@@ -66,5 +67,4 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-
 <style scoped></style>
