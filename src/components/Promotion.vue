@@ -9,23 +9,24 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="product" v-if="product.productDiscount != 0">
+  <div class="product" v-if="product.p.productDiscount != 0">
     <img
-      :src="'picture\\products\\' + product.productId + '.jpg'"
-      :alt="product.productName"
+      :src="'picture\\products\\' + product.p.productId + '.jpg'"
+      :alt="product.p.productName"
     />
     <h3>{{ product.productName }}</h3>
     <div>
-      <div class="discount">- {{ product.productDiscount * 100 }}%</div>
+      <div class="discount">- {{ product.p.productDiscount * 100 }}%</div>
       <div class="price">
         <div>
           {{
-            (product.productPrice * (1 - product.productDiscount)).toPrecision(
-              5
-            )
+            (
+              product.p.productPrice *
+              (1 - product.p.productDiscount)
+            ).toPrecision(5)
           }}€
         </div>
-        <div class="strikethrough">{{ product.productPrice }}€</div>
+        <div class="strikethrough">{{ product.p.productPrice }}€</div>
       </div>
     </div>
     <router-link to=""></router-link>
