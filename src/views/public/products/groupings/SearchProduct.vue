@@ -28,3 +28,14 @@ onMounted(async () => {
     <Product v-for="prod in product.productsBySearch" :product="prod"></Product>
   </section>
 </template>
+
+<style scoped>
+/* Styles pour la grille de produits */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+</style>

@@ -40,31 +40,141 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="theProduct.value != null">
-    <h1>{{ theProduct.value.product.productName }}</h1>
-    <br />
-    <section>
-      <h3>Description</h3>
-      <br />
-      <p>{{ theProduct.value.product.productDescription }}</p>
-    </section>
-    <br />
-    <h3>Colori(s) disponible(s) :</h3>
-    <p>{{ theProduct.value.join.colorName }}</p>
-  </div>
-  
-  <RouterLink :to="/cart/"><button @click="addToCart(product.MyProduct.product.productid)" class="btn_cart">Passer commande</button></RouterLink>
+  <div class="product-container" v-if="theProduct.value != null">
+    <div class="product-image">
+      <img
+        :src="
+          '/picture/products/' + theProduct.value.product.productId + '.jpg'
+        "
+        :alt="product.productName"
+      />
+    </div>
+    <div class="product-details">
+      <h1 class="product-name">{{ theProduct.value.product.productName }}</h1>
+      <p class="product-price">{{ theProduct.value.product.productPrice }}€</p>
+      <p class="product-description">
+        {{ theProduct.value.product.productDescription }}
+      </p>
+      <h3 class="product-colors-title">Colori(s) disponible(s) :</h3>
+      <p class="product-colors">{{ theProduct.value.join.colorName }}</p>
+      <RouterLink :to="/cart/"
+        ><button
+          @click="addToCart(product.MyProduct.product.productid)"
+          class="btn-cart"
+        >
+          Passer commande
+        </button></RouterLink
+      >
+    </div>
 
-  <div v-if="comments.value != null">
-    <h1>Commentaire(s)</h1>
-    <div v-for="comment in comments.value" :key="comment.commentId">
-      <h3>{{ comment.title }}</h3>
-      <p>{{ comment.description }}</p>
-      <p>Note : {{ comment.mark }}/5</p>
-      <p>Publié le : {{ comment.date }}</p>
-      <br />
+    <div class="product-comments" v-if="comments.value != null">
+      <h2>Commentaire(s)</h2>
+      <div
+        v-for="comment in comments.value"
+        :key="comment.commentId"
+        class="comment"
+      >
+        <h3>{{ comment.title }}</h3>
+        <p>{{ comment.description }}</p>
+        <p>Note : {{ comment.mark }}/5</p>
+        <p>Publié le : {{ comment.date }}</p>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<script>
+// ...
+</script>
+
+<style scoped>
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.product-image {
+  flex-basis: 40%;
+}
+
+.product-image img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.product-details {
+  flex-basis: 50%;
+  padding: 20px;
+}
+
+.product-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.product-description {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.product-colors-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.product-colors {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-cart {
+  background-color: #ff5722;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cart:hover {
+  background-color: #e64a19;
+}
+
+.product-comments {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.comment h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.comment p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.comment p:last-child {
+  margin-bottom: 0;
+}
+</style>

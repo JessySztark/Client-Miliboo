@@ -11,7 +11,7 @@ const props = defineProps({
 <template>
   <div class="product">
     <img
-      :src="'picture\\products\\' + product.p.productId + '.jpg'"
+      :src="'/picture/products/' + product.p.productId + '.jpg'"
       :alt="product.p.productName"
     />
     <h3>{{ product.p.productName }}</h3>
