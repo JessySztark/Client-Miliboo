@@ -19,6 +19,7 @@ export default {
         .login(this.user)
         .then((res) => {
           accountService.saveToken(res.data.token);
+          accountService.saveMail(res.data.userDetails.mail);
           this.$router.push("/client/clientArea");
         })
         .catch((err) => console.log(err));
@@ -42,7 +43,7 @@ export default {
     <form @submit.prevent="login">
       <p>Remplissez vos informations de connexion ci-dessous</p>
 
-      <div class="form- group">
+      <div class="form-group">
         <!-- <label for="user_Mail">Mail</label> -->
         <input
           class="form-text full"
@@ -73,7 +74,7 @@ export default {
     </form>
     <p>
       Pas encore de compte ?
-      <RouterLink to="/sign-in">Je créé mon compte</RouterLink>
+      <RouterLink to="/signup">Je créé mon compte</RouterLink>
     </p>
   </div>
 

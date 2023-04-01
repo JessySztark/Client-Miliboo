@@ -8,10 +8,15 @@ let login = (credentials) => {
 
 let logout = () => {
   localStorage.removeItem('token');
+  localStorage.removeItem('userMail');
 };
 
 let saveToken = (token) => {
   localStorage.setItem('token', token);
+};
+
+let saveMail = (mail) => {
+  localStorage.setItem('userMail', mail);
 };
 
 let isLogged = () => {
@@ -23,5 +28,6 @@ export const accountService = {
   login,
   logout,
   saveToken,
+  saveMail,
   isLogged,
 };
