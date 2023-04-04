@@ -44,7 +44,7 @@ import ClientArea from "@/views/client/ClientAreaView.vue";
 
 // ---------------------[Auth]--------------------- //
 import Login from "@/views/auth/LoginView.vue";
-// import Signup from "@/views/auth/SignupView.vue"; 
+import Signup from "@/views/auth/SignupView.vue"; 
 import { authGuard } from "@/_helpers/auth-guard";
 
 //test
@@ -175,18 +175,18 @@ const router = createRouter({
         },
       ],
     },
-
+    
     // ---------------[Auth]--------------- //
     {
       path: "/login",
       name: "login",
       component: Login,
     },
-    // {
-    //   path: "/signup",
-    //   name: "signup",
-    //   component: Signup,
-    // },
+    {
+      path: "/signup",
+      name: "signup",
+      component: Signup,
+    },
     // ---------------[ERRORS]--------------- //
     {
       path: "/:pathMatch(.*)*",

@@ -1,41 +1,47 @@
-<script>
-import { accountService } from '@/_services';
-import axios from "axios";
-import { reactive } from 'vue';
-
-
-
-export default{
-  methods:{
-    logout(){
-        accountService.logout()
-        this.$router.push('/')
-    },
-  }
-}
-</script>
-
 <template>
   <div class="form-container">
-    <h1>
-      Bienvenue sur votre espace client
+    <h1 v-if="isLoaded">
+      Bienvenue sur votre espace client {{ user.user.value.firstName }}
     </h1>
-    <a href=""
-      ><button class="button full">Voir ou modifier mes données</button></a
-    >
-    <a href=""
-      ><button class="button full">Voir les produits que j'ai aimés</button></a
-    >
-    <a href=""><button class="button full">Voir mes commandes</button></a>
+    <h1 v-else>
+      Chargement en cours...
+    </h1>
+    <a href="">
+      <button class="button full">Voir ou modifier mes données</button>
+    </a>
+    <a href="">
+      <button class="button full">Voir les produits que j'ai aimés</button>
+    </a>
+    <a href="">
+      <button class="button full">Voir mes commandes</button>
+    </a>
     <button class="button full" @click="logout()">Me déconnecter</button>
-    <!-- {{ GetAccountByEmail() }} -->
-
-    <!-- @if($compte->smsauth == 'TRUE')
-    <a href="?auth=0"><button class="button total">Désactiver l'authentification à deux facteurs</button></a>
-    @else
-    <a href="?auth=1"><button class="button total">Activer l'authentification à deux facteurs</button></a>-->
   </div>
 </template>
+
+<script setup>
+import { accountService } from '@/_services';
+import { userStore } from '@/stores/user.js';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+
+
+const user = userStore();
+const router = useRouter();
+const isLoaded = ref(false);
+
+async function fetchUser() {
+  await user.GetUserByMail('cobb-shellie@yahoo.net');
+  isLoaded.value = true;
+}
+
+fetchUser();
+
+function logout(){
+  accountService.logout();
+  router.push('/');
+}
+</script>
 
 <style scoped>
 h1 {
@@ -43,3 +49,7 @@ h1 {
   margin-bottom: 2vw;
 }
 </style>
+
+
+
+
