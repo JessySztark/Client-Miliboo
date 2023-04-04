@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <!-- {{ product.productsBySearch }} -->
 
-  <h1>Produit(s) Corrsepondant(s)</h1>
+  <h1>Produit(s) Correspondant(s)</h1>
   <section class="grid">
     <Product v-for="prod in product.productsBySearch" :product="prod"></Product>
   </section>

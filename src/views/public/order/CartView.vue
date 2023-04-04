@@ -1,11 +1,13 @@
 <script setup>
-import { cart } from "@/stores/cart.js";
+import { myCartStore } from "@/stores/cart.js";
+import { onMounted, onUpdated, ref, reactive } from "vue";
+import axios from "axios";
+const cart = myCartStore();
 </script>
 
 <template>
   <div id="panier">
     <h1>Résumé de votre commande</h1>
-
     <div id="commandStep">
       <button class="commandStep">1</button>
       <button class="commandStep" disabled>2</button>
@@ -23,9 +25,11 @@ import { cart } from "@/stores/cart.js";
           <th>SUPPRIMER</th>
           <th>TOTAL</th>
         </tr>
+        <div>
+          <tr><p>{{cart}}</p></tr>
+        </div>
       </thead>
       <tbody>
-        @if($cart != null) @foreach($cart as $unProduit)
         <tr>
           <th id="imgPanier">
             <a href="/nos-produits/{{unProduit.value.productid}}"></a></th></tr></tbody><!--

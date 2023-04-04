@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from "vue";
-
 const props = defineProps({
   product: {
     required: true,
@@ -10,10 +9,7 @@ const props = defineProps({
 
 <template>
   <div class="product">
-    <img
-      :src="'/picture/products/' + product.p.productId + '.jpg'"
-      :alt="product.p.productName"
-    />
+    <img src="picture\products\canape.jpg" alt="{{ product.p.productName }}" />
     <h3>{{ product.p.productName }}</h3>
     <div v-if="product.p.productDiscount == 0">
       <div class="price">{{ product.p.productPrice }}€</div>
@@ -47,20 +43,17 @@ const props = defineProps({
   overflow: hidden;
   position: relative;
 }
-
 .product img {
   width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
 }
-
 .product h3 {
   margin: 1vh;
   font-size: 18px;
   text-align: center;
 }
-
 .product .price {
   display: flex;
   margin: 5vh 2vh;
@@ -68,16 +61,13 @@ const props = defineProps({
   font-weight: bold;
   text-align: center;
 }
-
 .price div {
   margin-right: 2vh;
 }
-
 .strikethrough {
   text-decoration: line-through;
   color: rgb(213, 211, 211);
 }
-
 .product .discount {
   position: absolute;
   top: 1vh;
@@ -88,7 +78,6 @@ const props = defineProps({
   padding: 0.7vh 1vh;
   border-radius: 0.7vh;
 }
-
 .product a {
   display: block;
   position: absolute;
@@ -98,12 +87,10 @@ const props = defineProps({
   height: 100%;
   z-index: 1;
 }
-
 .product a:hover {
   opacity: 0.3;
   background-color: rgba(0, 0, 0, 0.2);
 }
-
 @media screen and (max-width: 767px) {
   .product {
     width: 45%;
