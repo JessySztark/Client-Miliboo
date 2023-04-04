@@ -2,15 +2,14 @@
 import { cartStore } from "@/stores/cart.js";
 import aProduct from "@/components/aProduct.vue";
 
-
-
-const cart = cartStore();
+const cart = JSON.parse(sessionStorage.getItem("myCart"));
+console.log(cart);
 </script>
 
 <template>
-<section class="grid">
- <aProduct v-for="prod in cart.myCart" :product="prod"></aProduct>
-</section>
+  <section class="grid">
+    <aProduct v-for="prod in cart" :product="prod"></aProduct>
+  </section>
 
   <div id="panier">
     <h1>Résumé de votre commande</h1>
@@ -36,7 +35,11 @@ const cart = cartStore();
       <tbody>
         <tr>
           <th id="imgPanier">
-            <a href="/nos-produits/{{unProduit.value.productid}}"></a></th></tr></tbody><!--
+            <a href="/nos-produits/{{unProduit.value.productid}}"></a>
+          </th>
+        </tr>
+      </tbody>
+      <!--
               <img
                 class="imgPanier"
                 src="{{unProduit['produit']->photos[0]->lienphoto}}"
@@ -100,7 +103,7 @@ const cart = cartStore();
       alt="icon"
     /> -->
 
-    <h3>Total de la commande {{ $total }}€</h3>
+    <!-- <h3>Total de la commande {{ $total }}€</h3> -->
 
     <!-- @if (session('login') != null) -->
     <form method="GET" action="/">

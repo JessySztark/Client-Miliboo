@@ -1,45 +1,50 @@
 <script setup>
+import { cartStore } from "@/stores/cart.js";
+import { defineProps, reactive } from "vue";
 
-const props = defineProps({
+var props = defineProps({
   product: {
     required: true,
   },
 });
 
-
-
+const cart = cartStore();
 </script>
-
 
 <template>
   <div class="product">
-    <img
-      :src="'/picture/products/' + product.value.product.productId + '.jpg'"
-      :alt="product.value.product.productName"
-    />
+    <router-link :to="'/produits/' + product.value.product.productId">
+      <img
+        :src="'/picture/products/' + product.value.product.productId + '.jpg'"
+        :alt="product.value.product.productName"
+      />
+    </router-link>
     <h3>{{ product.value.product.productName }}</h3>
-        <div class="strikethrough">{{ product.value.product.productPrice }}€</div>
-    <router-link :to="'/produits/' + product.value.product.productId"></router-link>
+    <div class="strikethrough">{{ product.value.product.productPrice }}€</div>
     <div class="qty">
-    <button >-</button>
-  Quantité : 
-  <button >+</button>
-  </div>
+      <button @click="cart.removeOne(product.value.product.productId)">
+        -
+      </button>
+      Quantité : {{ product.quantity }}
+      <button @click="cart.addOne(product.value.product.productId)">+</button>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: calc(25% - 2vw); /* 4 produits par ligne */
   margin-bottom: 2vw;
   border: 1px solid #ddd;
   border-radius: 1vh;
-  overflow: hidden;
   position: relative;
 }
 
-.qty{
-  align-items:center; 
+.qty {
+  align-items: center;
 }
 
 .product img {
@@ -67,10 +72,7 @@ const props = defineProps({
   margin-right: 2vh;
 }
 
-
-
 .product .discount {
-  position: absolute;
   top: 1vh;
   right: 1vh;
   background-color: #000000;
@@ -82,7 +84,6 @@ const props = defineProps({
 
 .product a {
   display: block;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

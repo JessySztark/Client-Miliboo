@@ -17,7 +17,6 @@ const isLoading = ref(true);
 const theProduct = reactive({ value: null });
 const comments = reactive({ value: null });
 
-
 onMounted(async () => {
   await axios
     .get(
@@ -36,10 +35,7 @@ onMounted(async () => {
     .then((response) => {
       comments.value = response.data;
     });
-
 });
-
-
 </script>
 
 <template>
@@ -64,10 +60,7 @@ onMounted(async () => {
       <h3 class="product-colors-title">Colori(s) disponible(s) :</h3>
       <p class="product-colors">{{ theProduct.value.join.colorName }}</p>
       <RouterLink :to="'/cart/'"
-        ><button
-          @click="myCart.addToCart(theProduct)"
-          class="btn-cart"
-        >
+        ><button @click="myCart.addToCart(theProduct)" class="btn-cart">
           Passer commandesss
         </button></RouterLink
       >
