@@ -41,6 +41,7 @@ import UserIndex from "@/views/admin/users/UserIndexView.vue";
 import ClientLayout from "@/views/client/LayoutView.vue";
 
 import ClientArea from "@/views/client/ClientAreaView.vue";
+import UserData from "@/views/client/UserDataView.vue";
 
 // ---------------------[Auth]--------------------- //
 import Login from "@/views/auth/LoginView.vue";
@@ -172,6 +173,11 @@ const router = createRouter({
           path: "clientArea",
           name: "clientArea",
           component: ClientArea,
+        },
+        {
+          path: "userData",
+          name: "userData",
+          component: UserData,
         },
       ],
     },

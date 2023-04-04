@@ -6,9 +6,9 @@
     <h1 v-else>
       Chargement en cours...
     </h1>
-    <a href="">
+    <RouterLink to="userData">
       <button class="button full">Voir ou modifier mes données</button>
-    </a>
+    </RouterLink>
     <a href="">
       <button class="button full">Voir les produits que j'ai aimés</button>
     </a>
