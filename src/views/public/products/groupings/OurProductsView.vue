@@ -27,6 +27,8 @@ function sortNormal() {
 function toggleSortMenu() {
   showSortMenu.value = !showSortMenu.value;
 }
+
+
 </script>
 
 <template>

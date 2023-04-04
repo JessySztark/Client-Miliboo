@@ -1,8 +1,17 @@
 <script setup>
-import { cart } from "@/stores/cart.js";
+import { cartStore } from "@/stores/cart.js";
+import aProduct from "@/components/aProduct.vue";
+
+
+
+const cart = cartStore();
 </script>
 
 <template>
+<section class="grid">
+ <aProduct v-for="prod in cart.myCart" :product="prod"></aProduct>
+</section>
+
   <div id="panier">
     <h1>Résumé de votre commande</h1>
 
@@ -25,7 +34,6 @@ import { cart } from "@/stores/cart.js";
         </tr>
       </thead>
       <tbody>
-        @if($cart != null) @foreach($cart as $unProduit)
         <tr>
           <th id="imgPanier">
             <a href="/nos-produits/{{unProduit.value.productid}}"></a></th></tr></tbody><!--
@@ -113,6 +121,14 @@ import { cart } from "@/stores/cart.js";
 </template>
 
 <style scoped>
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 #panier {
   margin: 0vh 10vw;
 }

@@ -43,7 +43,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- {{ product.productsBySearch }} -->
 
   <h1>Produit(s) Corrsepondant(s)</h1>
   <div class="sort-menu">
