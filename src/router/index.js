@@ -40,13 +40,16 @@ import UserIndex from "@/views/admin/users/UserIndexView.vue";
 // ---------------------[Client]--------------------- //
 import ClientLayout from "@/views/client/LayoutView.vue";
 
-import ClientDashBoard from "@/views/client/DashBoardView.vue";
+import ClientArea from "@/views/client/ClientAreaView.vue";
+import UserData from "@/views/client/UserDataView.vue";
 
 // ---------------------[Auth]--------------------- //
 import Login from "@/views/auth/LoginView.vue";
+import Signup from "@/views/auth/SignupView.vue"; 
 import { authGuard } from "@/_helpers/auth-guard";
 
 //test
+// localStorage.setItem('token', 'maurice');
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -167,18 +170,28 @@ const router = createRouter({
       component: ClientLayout,
       children: [
         {
-          path: "dashBoard",
-          name: "dashBoard",
-          component: ClientDashBoard,
+          path: "clientArea",
+          name: "clientArea",
+          component: ClientArea,
+        },
+        {
+          path: "userData",
+          name: "userData",
+          component: UserData,
         },
       ],
     },
-
+    
     // ---------------[Auth]--------------- //
     {
       path: "/login",
       name: "login",
       component: Login,
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: Signup,
     },
     // ---------------[ERRORS]--------------- //
     {
@@ -186,6 +199,14 @@ const router = createRouter({
       component: NotFound,
     },
   ],
+});
+
+// Veérouillage de la partie client (token)
+router.beforeEach((to, from, next) =>{
+  if (to.matched[0].name == 'client') {
+    authGuard()
+  }
+  next()
 });
 
 export default router;

@@ -56,15 +56,16 @@ export default {
                     /></RouterLink>
                   </li>
 
+
                   <li>
                     <RouterLink
                       class="iconsLink"
-                      to="/login"
-                      aria-label="Connexion"
+                      to="client/clientArea"
+                      aria-label="Espace client"
                       ><img
                         class="icons"
                         src="/picture/icons/icon-user.png"
-                        alt="Connexion"
+                        alt="Espace-client"
                     /></RouterLink>
                   </li>
                   <li>
