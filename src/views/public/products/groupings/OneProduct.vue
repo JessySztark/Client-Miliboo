@@ -1,6 +1,6 @@
 <script setup>
 import { productStore } from "@/stores/product.js";
-import { cart } from "@/stores/cart.js";
+import { cartStore } from "@/stores/cart.js";
 import { onMounted, onUpdated, ref, reactive } from "vue";
 import axios from "axios";
 import Comment from "@/components/Comment.vue";
@@ -12,6 +12,7 @@ const props = defineProps({
 });
 
 const product = productStore();
+const myCart = cartStore();
 const isLoading = ref(true);
 const theProduct = reactive({ value: null });
 const comments = reactive({ value: null });
@@ -34,8 +35,6 @@ onMounted(async () => {
     .then((response) => {
       comments.value = response.data;
     });
-
-  console.log(comments.value);
 });
 </script>
 
@@ -52,17 +51,17 @@ onMounted(async () => {
     <div class="product-details">
       <h1 class="product-name">{{ theProduct.value.product.productName }}</h1>
       <p class="product-price">{{ theProduct.value.product.productPrice }}€</p>
+      <p class="product-price">
+        Article(s) en stock(s) : {{ theProduct.value.product.nbStockProduct }}
+      </p>
       <p class="product-description">
         {{ theProduct.value.product.productDescription }}
       </p>
       <h3 class="product-colors-title">Colori(s) disponible(s) :</h3>
       <p class="product-colors">{{ theProduct.value.join.colorName }}</p>
-      <RouterLink :to="/cart/"
-        ><button
-          @click="addToCart(product.MyProduct.product.productid)"
-          class="btn-cart"
-        >
-          Passer commande
+      <RouterLink :to="'/cart/'"
+        ><button @click="myCart.addToCart(theProduct)" class="btn-cart">
+          Passer commandesss
         </button></RouterLink
       >
     </div>
